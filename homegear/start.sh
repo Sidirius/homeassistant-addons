@@ -31,12 +31,21 @@ if [ $USER_ID -ne 0 ]; then
 	sed -i -e "s/^${USER}:\([^:]*\):[0-9]*/${USER}:\1:${USER_GID}/" /etc/group
 fi
 
-mkdir -p /config/homegear /share/homegear/lib /share/homegear/log
-chown homegear:homegear /config/homegear /share/homegear/lib /share/homegear/log
-rm -Rf /etc/homegear /var/lib/homegear /var/log/homegear
-ln -nfs /config/homegear     /etc/homegear
-ln -nfs /share/homegear/lib /var/lib/homegear
-ln -nfs /share/homegear/log /var/log/homegear
+mkdir -p /config/homegear
+mkdir -p /share/homegear/lib
+mkdir -p /share/homegear/log
+
+chown $USER:$USER /config/homegear  
+chown $USER:$USER /share/homegear/lib
+chown $USER:$USER /share/homegear/log
+
+rm -rf /etc/homegear 
+rm -rf /var/lib/homegear
+rm -rf /var/log/homegear
+
+ln -nfs /config/homegear        /etc/homegear
+ln -nfs /share/homegear/lib     /var/lib/homegear
+ln -nfs /share/homegear/log     /var/log/homegear
 
 if ! [ "$(ls -A /etc/homegear)" ]; then
 	cp -a /etc/homegear.config/* /etc/homegear/
