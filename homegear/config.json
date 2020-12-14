@@ -1,6 +1,6 @@
 {
   "name": "Homegear",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "slug": "ha-homegear",
   "description": "Homegear Home Assistant Addon",
   "arch": ["armhf", "armv7", "aarch64", "amd64", "i386"],
